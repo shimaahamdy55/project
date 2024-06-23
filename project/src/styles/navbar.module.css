@@ -1,0 +1,32 @@
+nav{
+    margin: auto;
+    margin-top: 10px;
+    height: 15vh;
+}
+nav ul li{
+    margin-bottom:22px;
+    visibility: visible;
+
+}
+nav ul{
+    margin-left: -55px;
+    margin-top: -10px;
+}
+.img{
+    width: 200px;
+    margin-bottom: 25px;
+    margin-left: -50px;
+}
+nav ul li a{
+    color: rgb(134, 144, 235);
+    font-size: 15px;
+    font-weight: bold;
+}
+nav ul li a:hover{
+    color: #eeff00;
+}
+nav button{
+    margin-bottom: 28px;
+    color: rgb(134, 144, 235);
+    font-weight: bold;
+}

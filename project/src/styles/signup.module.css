@@ -1,0 +1,36 @@
+
+h2{
+color:#7777b9;
+}
+
+label {
+    color:#7777b9;
+    font-weight: bold;
+    margin-top:-22px;
+    margin-bottom: 10px;
+}
+
+ input{
+    border: 1.2px solid #434583;
+    border-radius: 0.6rem;
+    -webkit-border-radius: 0.6rem;
+    -moz-border-radius: 0.6rem;
+    -ms-border-radius: 0.6rem;
+    -o-border-radius: 0.6rem;
+   
+ }
+
+ a{
+            padding: 4px 19px;
+            border-radius: 1.5rem;
+            -webkit-border-radius: 1.5rem;
+            -moz-border-radius: 1.5rem;
+            -ms-border-radius: 1.5rem;
+            -o-border-radius: 1.5rem;
+            color: #fff;
+}
+
+.input{
+    margin-bottom: -36px;
+}
+
