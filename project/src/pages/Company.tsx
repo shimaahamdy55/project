@@ -14,6 +14,9 @@ import useTranslate from "../hooks/useTranslate"
 import MailIcon from "../icons/MailIcon"
 import PhoneIcon from "../icons/PhoneIcon"
 import EditIcon from "../icons/EditIcon"
+import { MessageCircleMore } from "lucide-react"
+import Chat from "../components/chat/Chat"
+
 export type Project = {
   name: string
   image1: string
@@ -28,9 +31,11 @@ type Values = {
 }
 
 const Company = () => {
+  const userType = JSON.parse(localStorage.getItem('sego_user')!).type
   const locale: any = useTranslate()
   const { id } = useParams()
   const [openModal, setOpenModal] = useState(false)
+  const [openChatModal, setOpenChatModal] = useState(false)
   const [openForm, setOpenForm] = useState(false)
   const [openUpdateCompany, setOpenUpdateCompany] = useState(false)
   const { data,refetch } = useQuery({
@@ -41,7 +46,6 @@ const Company = () => {
       }),
     select: (data: any) => data.data.message,
   })
-
   const form = useForm<Values>({
     initialValues: {
       company_name: "",
@@ -77,7 +81,10 @@ const Company = () => {
   }
   return (
     <div className="container flex flex-col items-center justify-center gap-8 mx-auto sectionPadding pb-16">
-      <button className=" hover:text-black duration-300 rounded-md p-2 text-[#1c3383] mr-[56%] -mb-[12%]" onClick={() => setOpenUpdateCompany(true)}><EditIcon/><Translate text="Edit"/></button>
+      <button hidden={userType === 'user'} className=" hover:text-black duration-300 rounded-md p-2 text-[#1c3383] mr-[56%] -mb-[12%]" onClick={() => setOpenUpdateCompany(true)}><EditIcon/><Translate text="Edit"/></button>
+      <button 
+      // hidden={userType === 'company'} 
+      className=" hover:text-black duration-300 rounded-md p-2 text-[#1c3383]" onClick={() => setOpenChatModal(true)}><MessageCircleMore/></button>
       <div className="w-[150px] h-[150px] overflow-hidden rounded-full mr-[90%]">
         <Image
           src={data?.logo}
@@ -105,7 +112,7 @@ const Company = () => {
         {data?.projects.map((project: Project) => (
           <ProjectCard key={project.name} project={project} />
         ))}
-  <button className="  hover:text-black duration-300 rounded-sm text-xl  text-[#1c3383] bg-slate-100 pb-20 relative transition ease-in-out  hover:-translate-y-1 hover:scale-90 duration-300"title='Add Project' onClick={() => setOpenForm(true)}><span className="text-8xl mb-[50px]">+</span> <br/><Translate text="Add Project"/></button>
+  <button className="  hover:text-black rounded-sm text-xl  text-[#1c3383] bg-slate-100 pb-20 relative transition ease-in-out  hover:-translate-y-1 hover:scale-90 duration-300"title='Add Project' onClick={() => setOpenForm(true)}><span className="text-8xl mb-[50px]">+</span> <br/><Translate text="Add Project"/></button>
       </div>
      <Button className="bg-[#1c3383] hover:bg-[gray] hover:text-black duration-300 p-2" onClick={() => setOpenModal(true)}><Translate text="Contact us" /></Button>
       <Modal
@@ -177,6 +184,9 @@ const Company = () => {
           </button>
           
         </form>
+      </Modal>
+      <Modal centered onClose={()=>setOpenChatModal(false)} opened={openChatModal} >
+          <Chat company={data}/>
       </Modal>
     </div>
   )

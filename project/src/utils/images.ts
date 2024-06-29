@@ -16,6 +16,7 @@ import project3 from "../assets/projects/pexels-peng-liu-169647.jpg"
 import project4 from "../assets/projects/pexels-pixabay-290275.jpg"
 import logout from "../assets/icons/logout.png"
 import navlogo from "../assets/hero slider/logo (2).png"
+import avatar from "../assets/avatar.png"
 export const images = {
   slider1,
   slider2,
@@ -34,5 +35,6 @@ export const images = {
   project3,
   project4,
   logout,
+  avatar,
   navlogo
 }

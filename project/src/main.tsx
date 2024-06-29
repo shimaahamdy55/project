@@ -1,25 +1,20 @@
-import '@mantine/carousel/styles.css';
-import { MantineProvider } from '@mantine/core';
-import '@mantine/core/styles.css';
-import {
-  QueryClient,
-  QueryClientProvider
-} from '@tanstack/react-query';
-import ReactDOM from 'react-dom/client';
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
-import './index.css';
-import About from './pages/About';
-import Company from './pages/Company';
-import Home from './pages/Home';
-import Login from './pages/Login';
-import Profile from './pages/Profile';
-import Root from './pages/Root';
-import Signup from './pages/Signup';
-import Specialization from './pages/Specialization';
-import SearchResults from './pages/SearchResults';
+import "@mantine/carousel/styles.css"
+import { MantineProvider } from "@mantine/core"
+import "@mantine/core/styles.css"
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
+import ReactDOM from "react-dom/client"
+import { createBrowserRouter, RouterProvider } from "react-router-dom"
+import AllChats from "./components/chat/AllChats"
+import "./index.css"
+import About from "./pages/About"
+import Company from "./pages/Company"
+import Home from "./pages/Home"
+import Login from "./pages/Login"
+import Profile from "./pages/Profile"
+import Root from "./pages/Root"
+import SearchResults from "./pages/SearchResults"
+import Signup from "./pages/Signup"
+import Specialization from "./pages/Specialization"
 const router = createBrowserRouter([
   {
     path: "/",
@@ -28,6 +23,10 @@ const router = createBrowserRouter([
       {
         path: "/profile",
         element: <Profile />,
+      },
+      {
+        path: "/chat",
+        element: <AllChats />,
       },
       {
         path: "/specialization/:id",
@@ -54,20 +53,20 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <Login />,
-
   },
   {
     path: "/signup",
     element: <Signup />,
   },
-
-]);
+])
 const queryClient = new QueryClient()
 
-const lang = sessionStorage.getItem('lang') || 'en'
-const html = document.querySelector('html')
-lang === 'en' ? html?.setAttribute('dir','ltr') :  html?.setAttribute('dir','rtl')
-ReactDOM.createRoot(document.getElementById('root')!).render(
+const lang = sessionStorage.getItem("lang") || "en"
+const html = document.querySelector("html")
+lang === "en"
+  ? html?.setAttribute("dir", "ltr")
+  : html?.setAttribute("dir", "rtl")
+ReactDOM.createRoot(document.getElementById("root")!).render(
   <QueryClientProvider client={queryClient}>
     <MantineProvider>
       <RouterProvider router={router} />

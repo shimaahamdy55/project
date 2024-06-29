@@ -21,20 +21,6 @@ const Login = () => {
         window.location = '/home'
         return
     }
-    const { mutate, isPending } = useMutation({
-        mutationKey: ['login'],
-        mutationFn: (params: string) => postData({
-            endpoint: userLogin ? `login?${params}` : `company/login?${params}`,
-        }),
-        onSuccess: data => {
-            if (data?.status === 200) {
-                const token = data?.data?.authorisation?.token
-                localStorage.setItem('sego_token', token)
-                localStorage.setItem('sego_user', JSON.stringify(userLogin ? data?.data?.user : data?.data?.message))
-                navigate('/home')
-            }
-        }
-    })
     const form = useForm<Values>({
         initialValues: {
             email: '',
@@ -45,9 +31,23 @@ const Login = () => {
             // password: (value) => value.trim().length >= 8 ? null : 'password must be at least 8 characters',
         }
     })
+    const { mutate, isPending } = useMutation({
+        mutationKey: ['login'],
+        mutationFn: (values:Values ) => postData({
+            endpoint: userLogin ? `login` : `company/login`,
+            data:values,
+        }),
+        onSuccess: data => {
+            if (data?.status === 200) {
+                const token = data?.data?.token ? data?.data?.token : data?.data?.authorisation?.token
+                localStorage.setItem('sego_token', token)
+                localStorage.setItem('sego_user', JSON.stringify(userLogin ? {...data?.data?.user,type:"user"} : {...data?.data?.message,type:"company"}))
+                navigate('/home')
+            }
+        }
+    })
     const submitHandler = (values: Values) => {
-        const searchParams = new URLSearchParams(values).toString()
-        mutate(searchParams)
+        mutate(values)
     }
     return (
         <form onSubmit={form.onSubmit(submitHandler)} className='flex flex-col gap-8 w-1/3 mx-auto container sectionPadding shadow-lg p-4 mt-16 bg-[#ebecf4] rounded-lg'>
