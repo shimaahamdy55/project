@@ -40,7 +40,7 @@ const ProjectCard = ({ project }: ProjectCard) => {
     })
 
     const { mutate } = useMutation({
-        mutationKey: ['delete-project', project?.id],
+      mutationKey: ['delete-project', project?.id],
         mutationFn: (data: Values) => postData({
             endpoint: data.type === 'delete' ? `DeleteProject/${project.id}` : `updateProject/${project.id}`,
             data: data.type === 'delete' ? {
@@ -49,7 +49,7 @@ const ProjectCard = ({ project }: ProjectCard) => {
             formData: data.type === 'edit'
         }),
         onSuccess: () => {
-           queryClient.refetchQueries({ queryKey: ['get-company', project.id] })
+            queryClient.refetchQueries({ queryKey: ['get-company', project.id] })
         }
     })
 
@@ -66,30 +66,48 @@ const ProjectCard = ({ project }: ProjectCard) => {
             <button className="absolute top-4 left-4 text-[#1c3383]" onClick={() => setOpenForm(true)}>
                 <EditIcon />
             </button>
-            <Modal opened={openForm} onClose={() => setOpenForm(false)} size={1000} centered>
-                <h2 className="text-center text-3xl text-[#1c3383] mb-[20px]"><Translate text="update Project"/></h2>
-                <form onSubmit={form.onSubmit((values) => mutate({ ...values, type: 'edit' }))} className='flex flex-col gap-4 w-1/3 mx-auto container sectionPadding shadow-lg p-4 bg-[#ebecf4] '>
-                    <Input form={form} name='name' placeholder='name' type='text' />
-                    <Input form={form} name='description' type='text' />
-                    <FileInput
-                         placeholder = {locale?.yourLogo || "Your logo"}
-                        // @ts-ignore
-                        onChange={file => form.setFieldValue('image1', file)}
-                    />
-                    {
-                        form.errors?.image1 &&
-                        <p className='text-red-500'>{form.errors?.image1}</p>
-                    }
-                    <button className="  bg-[#1c3383] hover:bg-[gray] hover:text-black p-1 rounded-md text-white" type="submit"><Translate text="update"/></button>
-                </form>
-            </Modal>
-            <Modal opened={openConfirmation} onClose={() => setOpenConfirmation(false)} size={1000} centered>
-                 <h3 className="text-2xl text-center capitalize text-[#1c3383]"><Translate text="are you sure you want to delete this project" /></h3>
-                <div className="flex items-center gap-5 justify-center my-8">
-                    <button className="text-white hover:text-[#1c3383] p-1 rounded-md bg-[#1c3383] hover:bg-[white]" onClick={() => setOpenConfirmation(false)}><Translate text="Cancel" /></button>
-                    <button className="text-white hover:text-[#1c3383] p-1 rounded-md bg-[#1c3383] hover:bg-[white]"onClick={() => mutate({ type: 'delete' } as Values)}><Translate text="Confirm" /></button>
-                </div>
-            </Modal>
+        <Modal opened={openForm} onClose={() => setOpenForm(false)} size={1000} centered>
+    <h2 className="text-center text-3xl text-[#1c3383] mb-5">
+        <Translate text="update Project" />
+    </h2>
+    <form 
+        onSubmit={form.onSubmit((values) => mutate({ ...values, type: 'edit' }))} 
+        className='flex flex-col gap-4 w-full max-w-sm mx-auto p-4 bg-[#ebecf4] shadow-lg'
+    >
+        <Input form={form} name='name' placeholder='name' type='text' />
+        <Input form={form} name='description' type='text' />
+        <FileInput
+            placeholder={locale?.yourLogo || "Your logo"}
+            // @ts-ignore
+            onChange={file => form.setFieldValue('image1', file)}
+        />
+        {form.errors?.image1 && <p className='text-red-500'>{form.errors?.image1}</p>}
+        <button className="bg-[#1c3383] hover:bg-gray-500 hover:text-black p-2 rounded-md text-white" type="submit">
+            <Translate text="update" />
+        </button>
+    </form>
+</Modal>
+
+          <Modal opened={openConfirmation} onClose={() => setOpenConfirmation(false)} size={1000} centered>
+    <h3 className="text-2xl text-center capitalize text-[#1c3383] mb-4">
+        <Translate text="are you sure you want to delete this project" />
+    </h3>
+    <div className="flex flex-col sm:flex-row items-center gap-5 justify-center my-8">
+        <button 
+            className="text-white hover:text-[#1c3383] p-1 rounded-md bg-[#1c3383] hover:bg-white w-full sm:w-auto"
+            onClick={() => setOpenConfirmation(false)}
+        >
+            <Translate text="Cancel" />
+        </button>
+        <button 
+            className="text-white hover:text-[#1c3383] p-1 rounded-md bg-[#1c3383] hover:bg-white w-full sm:w-auto"
+            onClick={() => mutate({ type: 'delete' } as Values)}
+        >
+            <Translate text="Confirm" />
+        </button>
+    </div>
+</Modal>
+
         </div>
     )
 }

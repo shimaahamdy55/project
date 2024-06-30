@@ -1,6 +1,6 @@
 import { useForm } from "@mantine/form"
 import Input from "../ui/Input"
-import { useMutation } from "@tanstack/react-query"
+import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { FileInput } from "@mantine/core"
 import { postData } from "../../api/postData"
 import Translate from "../ui/Translate"
@@ -16,8 +16,7 @@ type Values = {
     country: string
 }
 const UpdateUserForm = ({user,setOpenUpdateUser}:UpdateUserForm) => {
-  const locale:any = useTranslate()
-
+  const queryClient = useQueryClient()
   const { mutate } = useMutation({
     mutationKey: ['register'],
     mutationFn: (data: Values) => postData({
@@ -27,9 +26,8 @@ const UpdateUserForm = ({user,setOpenUpdateUser}:UpdateUserForm) => {
     }),
     onSuccess:(data)=>{
        if(data?.status === 200){
-        const user = JSON.stringify(data?.data?.user)
-        localStorage.setItem('sego_user',user)
         setOpenUpdateUser(false)
+        queryClient.refetchQueries({queryKey:['profile']})
        }
     }
 })

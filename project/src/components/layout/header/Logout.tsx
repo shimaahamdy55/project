@@ -11,7 +11,7 @@ const Logout = () => {
         navigate('/home')
     }
     return (
-        <button className="w-[15px] absolute mt-[2px] text-[#7f9bff] mr-[32%] ml-[30%] hover:text-[#eeff00] "  onClick={logout}>
+        <button className="w-[15px] absolute mt-[27px] text-[#7f9bff] mr-[32%] ml-[340px] hover:text-[#eeff00] hidden md:flex lg:ml-[37%] xl:ml-[25%]"  onClick={logout}>
             {/* <Image
                 src={images.logout}
                 alt="logout"

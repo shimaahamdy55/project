@@ -16,12 +16,18 @@
     "@mantine/hooks": "^7.6.1",
     "@tanstack/react-query": "^5.28.0",
     "axios": "^1.6.7",
+    "pusher-js": "8.4.0-rc2",
+     "react-pusher": "^0.2.0",
     "embla-carousel-autoplay": "^7.1.0",
     "embla-carousel-react": "^7.1.0",
+    "icons": "^1.0.0",
     "lucide-react": "^0.390.0",
-    "react": "^18.2.0",
+    "react": "^18.3.1",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.22.3"
+    "react-icons": "^5.2.1",
+    "react-responsive-carousel": "^3.2.23",
+    "react-router-dom": "^6.22.3",
+    "react-slick": "^0.30.2"
   },
   "devDependencies": {
     "@types/react": "^18.2.56",

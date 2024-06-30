@@ -1,0 +1,6 @@
+ @media (max-width: 768px) {
+     .company-card p {
+         font-size: 14px;
+         line-height: 1.5;
+     }
+ }

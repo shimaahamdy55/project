@@ -1,7 +1,7 @@
-import slider1 from "../assets/hero slider/crop-architect-opening-blueprint.jpg"
-import slider2 from "../assets/hero slider/pexels-pixabay-164444.jpg"
-import slider3 from "../assets/hero slider/pexels-thisisengineering-3862631.jpg"
-import slider4 from "../assets/hero slider/pexels-thomas-ward-2706741.jpg"
+import slider2 from "../assets/hero slider/crop-architect-opening-blueprint.jpg"
+import slider1 from "../assets/hero slider/IMG-20231218-WA0022.jpg"
+// import slider3 from "../assets/hero slider/Gallery_1702935318423.jpg"
+// import slider4 from "../assets/hero slider/IMG-20231014-WA0028.jpg"
 import profile from "../assets/profile/pexels-stefan-stefancik-91227.jpg"
 import company1 from "../assets/companies/pexels-boris-hamer-17299768.jpg"
 import company2 from "../assets/companies/pexels-luis-quintero-3689532.jpg"
@@ -16,11 +16,12 @@ import project3 from "../assets/projects/pexels-peng-liu-169647.jpg"
 import project4 from "../assets/projects/pexels-pixabay-290275.jpg"
 import logout from "../assets/icons/logout.png"
 import navlogo from "../assets/hero slider/logo (2).png"
+import avatar from "../assets/avatar.png"
 export const images = {
   slider1,
   slider2,
-  slider3,
-  slider4,
+  // slider3,
+  // slider4,
   profile,
   company1,
   company2,
@@ -34,5 +35,6 @@ export const images = {
   project3,
   project4,
   logout,
+   avatar,
   navlogo
 }

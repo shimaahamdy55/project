@@ -14,11 +14,11 @@ nav ul{
 }
 .img{
     width: 200px;
-    margin-bottom: 25px;
+    margin-bottom: 27px;
     margin-left: -50px;
 }
 nav ul li a{
-    color: rgb(134, 144, 235);
+    color: #8690eb;
     font-size: 15px;
     font-weight: bold;
 }
@@ -27,6 +27,63 @@ nav ul li a:hover{
 }
 nav button{
     margin-bottom: 28px;
-    color: rgb(134, 144, 235);
+    color: #8690eb;
     font-weight: bold;
+}
+
+
+/* Media Queries */
+@media (min-width: 768px) {
+    .navbar {
+        flex-direction: row;
+        padding: 1rem 2rem;
+    }
+
+    .navbar-header {
+        width: auto;
+    }
+
+    .menu-toggle {
+        display: none;
+    }
+
+    .navbar-links {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .nav-item {
+        margin: 0;
+        padding: 0 1rem;
+    }
+
+    .dropdown-menu {
+        top: 2.5rem;
+    }
+
+    .user-section {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .search-container {
+        margin-bottom: 0;
+        margin-right: 1rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .logo {
+        width: 160px;
+        /* Adjust size as needed */
+    }
+
+    .profile-link {
+        gap: 1rem;
+    }
+
+    .search-button {
+        margin-left: 1rem;
+    }
 }
