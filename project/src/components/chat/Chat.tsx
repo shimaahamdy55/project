@@ -36,8 +36,8 @@ const Chat = ({ company, isReply }: { company: any; isReply?: boolean }) => {
       setChats(["no messages yet"])
       return
     }
-    const lastChats = allChatMessages?.data?.message?.map((msg) => msg?.message)
-    setChats(() => setChats(lastChats))
+    const lastChats = allChatMessages?.data?.message?.map((msg) => msg)
+    setChats(() => lastChats)
   }, [allChatMessages])
 
   useEffect(() => {
